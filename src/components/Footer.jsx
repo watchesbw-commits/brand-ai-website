@@ -9,7 +9,7 @@ export default function Footer() {
   const socials = [
     { label: 'Instagram', icon: '📸', href: '#' },
     { label: 'TikTok', icon: '🎵', href: '#' },
-    { label: 'WhatsApp', icon: '💬', href: 'https://wa.me/521XXXXXXXXXX' },
+    { label: 'WhatsApp', icon: '💬', href: 'https://wa.me/526271424345' },
   ]
 
   return (

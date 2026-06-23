@@ -28,7 +28,7 @@ export default function Contact() {
     const msg = encodeURIComponent(
       `¡Hola Brand AI! Me interesa conocer más.\n\nNombre: ${form.nombre}\nNegocio: ${form.negocio}\nServicio de interés: ${form.servicio}`
     )
-    window.open(`https://wa.me/521XXXXXXXXXX?text=${msg}`, '_blank')
+    window.open(`https://wa.me/526271424345?text=${msg}`, '_blank')
     setSent(true)
     setTimeout(() => setSent(false), 4000)
   }
@@ -98,10 +98,10 @@ export default function Contact() {
             border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14,
           }}>
             <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, marginBottom: 10 }}>O escríbenos directo por WhatsApp</p>
-            <a href="https://wa.me/521XXXXXXXXXX" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/526271424345" target="_blank" rel="noopener noreferrer"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: '#00c8ff', fontWeight: 700, fontSize: 16 }}>
               <span style={{ fontSize: 22 }}>📱</span>
-              +52 (número placeholder)
+              +52 627 142 4345
             </a>
           </div>
         </div>
