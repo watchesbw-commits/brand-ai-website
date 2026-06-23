@@ -55,43 +55,67 @@ const mediumPkgs = [
 function PkgCard({ name, price, note, featured, features, ideal }) {
   return (
     <div style={{
-      background: featured ? 'rgba(26,79,216,0.15)' : 'rgba(255,255,255,0.04)',
-      border: `1px solid ${featured ? 'rgba(26,79,216,0.6)' : 'rgba(255,255,255,0.07)'}`,
-      borderRadius: 20, padding: '32px 28px',
+      background: featured ? 'rgba(0,200,255,0.05)' : 'rgba(0,200,255,0.03)',
+      border: `1px solid ${featured ? 'rgba(0,200,255,0.5)' : 'rgba(0,200,255,0.15)'}`,
+      borderRadius: 12, padding: '32px 28px',
       display: 'flex', flexDirection: 'column', gap: 20,
-      position: 'relative', transition: 'transform 0.2s',
+      position: 'relative',
+      backdropFilter: 'blur(10px)',
+      boxShadow: featured ? '0 0 30px rgba(0,200,255,0.08)' : 'none',
+      transition: 'all 0.3s ease',
     }}
-    onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
-    onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+    onMouseEnter={e => {
+      e.currentTarget.style.transform = 'translateY(-4px)'
+      e.currentTarget.style.borderColor = 'rgba(0,200,255,0.6)'
+      e.currentTarget.style.boxShadow = '0 0 30px rgba(0,200,255,0.15)'
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.transform = 'translateY(0)'
+      e.currentTarget.style.borderColor = featured ? 'rgba(0,200,255,0.5)' : 'rgba(0,200,255,0.15)'
+      e.currentTarget.style.boxShadow = featured ? '0 0 30px rgba(0,200,255,0.08)' : 'none'
+    }}
     >
       {featured && (
         <div style={{
-          position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)',
-          background: '#1a4fd8', color: '#fff', fontSize: 12, fontWeight: 700,
-          padding: '4px 16px', borderRadius: 100, letterSpacing: '0.5px', whiteSpace: 'nowrap',
-        }}>MÁS POPULAR</div>
+          position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)',
+          background: 'transparent',
+          border: '1px solid #00c8ff',
+          color: '#00c8ff',
+          fontSize: 10, fontWeight: 700,
+          padding: '4px 16px', borderRadius: 4,
+          letterSpacing: '0.15em', whiteSpace: 'nowrap',
+          boxShadow: '0 0 12px rgba(0,200,255,0.4)',
+          textTransform: 'uppercase',
+        }}>Más popular</div>
       )}
 
       <div>
-        <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 8 }}>{name}</h3>
-        <div style={{ fontSize: 28, fontWeight: 900, color: featured ? '#00c8ff' : '#fff', lineHeight: 1 }}>{price}</div>
-        {note && <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginTop: 4 }}>{note}</div>}
+        <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 10, textShadow: '0 0 20px rgba(0,200,255,0.1)' }}>{name}</h3>
+        <div style={{
+          fontSize: 28, fontWeight: 900, color: '#00c8ff', lineHeight: 1,
+          textShadow: '0 0 15px rgba(0,200,255,0.4)',
+        }}>{price}</div>
+        {note && <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginTop: 6 }}>{note}</div>}
       </div>
 
       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {features.map((f, i) => (
-          <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, color: 'rgba(255,255,255,0.8)' }}>
+          <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
             <span style={{ color: '#00c8ff', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>
             {f}
           </li>
         ))}
       </ul>
 
-      <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 14, marginTop: 'auto' }}>
-        Ideal para: <span style={{ color: 'rgba(255,255,255,0.65)' }}>{ideal}</span>
+      <div style={{
+        fontSize: 13, color: 'rgba(255,255,255,0.35)',
+        borderTop: '1px solid rgba(0,200,255,0.1)',
+        paddingTop: 14, marginTop: 'auto',
+      }}>
+        Ideal para: <span style={{ color: 'rgba(255,255,255,0.6)' }}>{ideal}</span>
       </div>
 
-      <a href="#contacto" className={featured ? 'btn-primary' : 'btn-ghost'} style={{ textAlign: 'center', justifyContent: 'center' }}>
+      <a href="#contacto" className="btn-primary" style={{ textAlign: 'center', justifyContent: 'center' }}>
         Empezar ahora
       </a>
     </div>
@@ -110,16 +134,16 @@ export default function Packages() {
   return (
     <section id="paquetes">
       <div className="container">
-        <p style={{ textAlign: 'center', color: '#00c8ff', fontSize: 13, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12 }}>Paquetes</p>
+        <p style={{ textAlign: 'center', color: '#00c8ff', fontSize: 12, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12 }}>Paquetes</p>
         <h2 className="section-title">Paquetes todo incluido</h2>
         <p className="section-sub">Ahorra hasta 40% vs contratar por separado</p>
 
-        <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 28, color: 'rgba(255,255,255,0.8)' }}>
+        <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 28, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           Pequeños negocios
         </h3>
         <PkgGrid pkgs={smallPkgs} />
 
-        <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 28, color: 'rgba(255,255,255,0.8)' }}>
+        <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 28, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           Empresas medianas
         </h3>
         <PkgGrid pkgs={mediumPkgs} />

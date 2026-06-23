@@ -4,19 +4,17 @@
 
 :root {
   --cyan: #00c8ff;
-  --blue: #1a4fd8;
   --white: #ffffff;
   --text-secondary: rgba(255,255,255,0.45);
-  --card-bg: rgba(255,255,255,0.04);
-  --card-border: rgba(255,255,255,0.07);
+  --card-bg: rgba(0,200,255,0.03);
+  --card-border: rgba(0,200,255,0.15);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(160deg, #020818 0%, #050d24 50%, #020c1f 100%);
-  background-attachment: fixed;
+  background: #000000;
   color: #fff;
   min-height: 100vh;
   line-height: 1.6;
@@ -32,49 +30,87 @@ img { max-width: 100%; display: block; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 .btn-primary {
-  background: var(--blue);
-  color: #fff;
-  border: none;
-  padding: 13px 28px;
-  border-radius: 10px;
-  font-size: 15px;
+  background: transparent;
+  color: #00c8ff;
+  border: 1px solid #00c8ff;
+  box-shadow: 0 0 12px rgba(0,200,255,0.4), inset 0 0 12px rgba(0,200,255,0.05);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
   font-weight: 600;
-  transition: background 0.2s, transform 0.15s;
+  padding: 13px 28px;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
-.btn-primary:hover { background: #1e5ae8; transform: translateY(-1px); }
+.btn-primary:hover {
+  background: rgba(0,200,255,0.1);
+  box-shadow: 0 0 25px rgba(0,200,255,0.6), inset 0 0 12px rgba(0,200,255,0.05);
+  transform: translateY(-1px);
+}
 
 .btn-ghost {
   background: transparent;
-  color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  padding: 13px 28px;
-  border-radius: 10px;
-  font-size: 15px;
+  color: #00c8ff;
+  border: 1px solid #00c8ff;
+  box-shadow: 0 0 12px rgba(0,200,255,0.4), inset 0 0 12px rgba(0,200,255,0.05);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
   font-weight: 600;
-  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  padding: 13px 28px;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
-.btn-ghost:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); transform: translateY(-1px); }
+.btn-ghost:hover {
+  background: rgba(0,200,255,0.1);
+  box-shadow: 0 0 25px rgba(0,200,255,0.6), inset 0 0 12px rgba(0,200,255,0.05);
+  transform: translateY(-1px);
+}
 
-.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; text-align: center; margin-bottom: 12px; }
+.section-title {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 12px;
+  text-shadow: 0 0 30px rgba(0,200,255,0.2);
+}
 .section-sub { text-align: center; color: var(--text-secondary); font-size: 16px; margin-bottom: 48px; }
 
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 28px;
-  transition: border-color 0.2s, transform 0.2s;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
-.card:hover { border-color: rgba(0,200,255,0.2); transform: translateY(-3px); }
+.card:hover {
+  border-color: rgba(0,200,255,0.5);
+  box-shadow: 0 0 20px rgba(0,200,255,0.1);
+  transform: translateY(-2px);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,200,255,0.3), transparent);
+  border: none;
+  margin: 0;
+}
 
 .cyan { color: var(--cyan); }
 
 section { padding: 96px 0; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,200,255,0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(0,200,255,0); }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
 
 @media (max-width: 768px) { section { padding: 64px 0; } .container { padding: 0 16px; } }

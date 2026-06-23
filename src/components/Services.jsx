@@ -27,10 +27,13 @@ function ServiceCard({ icon, name, price }) {
     <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div style={{ fontSize: 28 }}>{icon}</div>
       <div>
-        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>{name}</div>
-        <div style={{ color: '#00c8ff', fontSize: 15, fontWeight: 600 }}>{price}</div>
+        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 8 }}>{name}</div>
+        <div style={{
+          color: '#00c8ff', fontSize: 14, fontWeight: 600,
+          textShadow: '0 0 10px rgba(0,200,255,0.3)',
+        }}>{price}</div>
       </div>
-      <a href="#contacto" className="btn-primary" style={{ padding: '9px 18px', fontSize: 13, marginTop: 'auto' }}>
+      <a href="#contacto" className="btn-primary" style={{ padding: '9px 16px', fontSize: 11, marginTop: 'auto' }}>
         Contratar
       </a>
     </div>
@@ -45,19 +48,24 @@ export default function Services() {
   return (
     <section id="servicios">
       <div className="container">
-        <p style={{ textAlign: 'center', color: '#00c8ff', fontSize: 13, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12 }}>Servicios</p>
+        <p style={{ textAlign: 'center', color: '#00c8ff', fontSize: 12, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12 }}>Servicios</p>
         <h2 className="section-title">Servicios individuales</h2>
         <p className="section-sub">Paga solo lo que necesitas</p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 0, marginBottom: 44,
-          background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)',
-          borderRadius: 12, padding: 4, maxWidth: 380, margin: '0 auto 44px' }}>
+        <div style={{
+          display: 'flex', justifyContent: 'center', gap: 0, marginBottom: 44,
+          background: 'transparent',
+          border: '1px solid rgba(0,200,255,0.15)',
+          borderRadius: 8, padding: 4, maxWidth: 380, margin: '0 auto 44px',
+        }}>
           {tabs.map((t, i) => (
             <button key={i} onClick={() => setTab(i)} style={{
-              flex: 1, padding: '10px 16px', borderRadius: 9, border: 'none',
-              background: tab === i ? '#1a4fd8' : 'transparent',
-              color: tab === i ? '#fff' : 'rgba(255,255,255,0.5)',
-              fontWeight: 600, fontSize: 14, transition: 'all 0.2s',
+              flex: 1, padding: '10px 16px', borderRadius: 6, border: 'none',
+              background: tab === i ? 'rgba(0,200,255,0.1)' : 'transparent',
+              color: tab === i ? '#00c8ff' : 'rgba(255,255,255,0.4)',
+              fontWeight: 600, fontSize: 13, letterSpacing: '0.05em',
+              boxShadow: tab === i ? '0 0 12px rgba(0,200,255,0.2)' : 'none',
+              transition: 'all 0.3s ease',
             }}>{t}</button>
           ))}
         </div>

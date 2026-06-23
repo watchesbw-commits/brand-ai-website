@@ -7,9 +7,9 @@ const reasons = [
 
 export default function WhyBrandAI() {
   return (
-    <section id="precios" style={{ background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+    <section id="precios">
       <div className="container">
-        <p style={{ textAlign: 'center', color: '#00c8ff', fontSize: 13, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12 }}>Por qué nosotros</p>
+        <p style={{ textAlign: 'center', color: '#00c8ff', fontSize: 12, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12 }}>Por qué nosotros</p>
         <h2 className="section-title">¿Por qué Brand AI?</h2>
         <p className="section-sub">Lo que nos hace diferentes</p>
 
@@ -17,12 +17,14 @@ export default function WhyBrandAI() {
           {reasons.map((r, i) => (
             <div key={i} className="card" style={{ textAlign: 'center', padding: '36px 28px' }}>
               <div style={{
-                width: 64, height: 64, borderRadius: 16, margin: '0 auto 20px',
-                background: 'rgba(0,200,255,0.08)', border: '1px solid rgba(0,200,255,0.15)',
+                width: 64, height: 64, borderRadius: 12, margin: '0 auto 20px',
+                background: 'rgba(0,200,255,0.06)',
+                border: '1px solid rgba(0,200,255,0.2)',
+                boxShadow: '0 0 16px rgba(0,200,255,0.08)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28,
               }}>{r.icon}</div>
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 10 }}>{r.title}</h3>
-              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, lineHeight: 1.7 }}>{r.desc}</p>
+              <h3 style={{ fontWeight: 700, fontSize: 17, marginBottom: 10, textShadow: '0 0 20px rgba(0,200,255,0.15)' }}>{r.title}</h3>
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 14, lineHeight: 1.75 }}>{r.desc}</p>
             </div>
           ))}
         </div>
