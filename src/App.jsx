@@ -2,6 +2,7 @@ import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Services from './components/Services'
+import AIModels from './components/AIModels'
 import Packages from './components/Packages'
 import WhyBrandAI from './components/WhyBrandAI'
 import AirbnbTours from './components/AirbnbTours'
@@ -20,6 +21,8 @@ export default function App() {
       <Hero />
       <Divider />
       <Services />
+      <Divider />
+      <AIModels />
       <Divider />
       <Packages />
       <Divider />

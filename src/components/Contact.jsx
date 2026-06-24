@@ -25,25 +25,27 @@ export default function Contact() {
 
   const inputStyle = {
     width: '100%', background: '#fff',
-    border: '1.5px solid rgba(26,26,46,0.12)',
-    borderRadius: 10, padding: '13px 16px',
-    color: '#1A1A2E', fontSize: 15, outline: 'none',
+    border: '1.5px solid #E0EAFF',
+    borderRadius: 12, padding: '13px 16px',
+    color: '#0A0A1A', fontSize: 15, outline: 'none',
     transition: 'all 0.22s ease',
-    boxShadow: '0 1px 4px rgba(26,26,46,0.04)',
+    boxShadow: '0 2px 8px rgba(0,102,255,0.05)',
   }
 
   const labelStyle = {
     display: 'block', fontSize: 12, fontWeight: 700,
-    color: '#7C3AED', marginBottom: 8,
+    color: '#0066FF', marginBottom: 8,
     letterSpacing: '0.08em', textTransform: 'uppercase',
   }
 
   return (
-    <section id="contacto" style={{ background: '#F8F8F8' }}>
+    <section id="contacto" style={{ background: '#F0F4FF' }}>
       <div className="container">
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
-          <p className="section-label">Contacto</p>
-          <h2 className="section-title">Empieza con un video gratis</h2>
+          <div className="section-label-wrap">
+            <span className="section-label">Contacto</span>
+          </div>
+          <h2 className="section-title gradient-text">Empieza con un video gratis</h2>
           <p className="section-sub" style={{ marginBottom: 40 }}>
             Mándanos tu negocio y creamos un video de muestra sin costo para que veas la calidad
           </p>
@@ -54,15 +56,15 @@ export default function Contact() {
                 <label style={labelStyle}>Nombre</label>
                 <input required name="nombre" value={form.nombre} onChange={handleChange}
                   placeholder="Tu nombre" style={inputStyle}
-                  onFocus={e => { e.target.style.borderColor = '#7C3AED'; e.target.style.boxShadow = '0 0 0 3px rgba(124,58,237,0.1)' }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(26,26,46,0.12)'; e.target.style.boxShadow = '0 1px 4px rgba(26,26,46,0.04)' }} />
+                  onFocus={e => { e.target.style.borderColor = '#0066FF'; e.target.style.boxShadow = '0 0 0 3px rgba(0,102,255,0.12)' }}
+                  onBlur={e => { e.target.style.borderColor = '#E0EAFF'; e.target.style.boxShadow = '0 2px 8px rgba(0,102,255,0.05)' }} />
               </div>
               <div>
                 <label style={labelStyle}>Negocio</label>
                 <input required name="negocio" value={form.negocio} onChange={handleChange}
                   placeholder="Nombre de tu negocio" style={inputStyle}
-                  onFocus={e => { e.target.style.borderColor = '#7C3AED'; e.target.style.boxShadow = '0 0 0 3px rgba(124,58,237,0.1)' }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(26,26,46,0.12)'; e.target.style.boxShadow = '0 1px 4px rgba(26,26,46,0.04)' }} />
+                  onFocus={e => { e.target.style.borderColor = '#0066FF'; e.target.style.boxShadow = '0 0 0 3px rgba(0,102,255,0.12)' }}
+                  onBlur={e => { e.target.style.borderColor = '#E0EAFF'; e.target.style.boxShadow = '0 2px 8px rgba(0,102,255,0.05)' }} />
               </div>
             </div>
 
@@ -70,32 +72,33 @@ export default function Contact() {
               <label style={labelStyle}>WhatsApp</label>
               <input required name="whatsapp" value={form.whatsapp} onChange={handleChange}
                 placeholder="+52 55 1234 5678" type="tel" style={inputStyle}
-                onFocus={e => { e.target.style.borderColor = '#7C3AED'; e.target.style.boxShadow = '0 0 0 3px rgba(124,58,237,0.1)' }}
-                onBlur={e => { e.target.style.borderColor = 'rgba(26,26,46,0.12)'; e.target.style.boxShadow = '0 1px 4px rgba(26,26,46,0.04)' }} />
+                onFocus={e => { e.target.style.borderColor = '#0066FF'; e.target.style.boxShadow = '0 0 0 3px rgba(0,102,255,0.12)' }}
+                onBlur={e => { e.target.style.borderColor = '#E0EAFF'; e.target.style.boxShadow = '0 2px 8px rgba(0,102,255,0.05)' }} />
             </div>
 
             <div>
               <label style={labelStyle}>Servicio de interés</label>
               <select required name="servicio" value={form.servicio} onChange={handleChange}
-                style={{ ...inputStyle, appearance: 'none', cursor: 'pointer', color: form.servicio ? '#1A1A2E' : 'rgba(26,26,46,0.4)' }}>
+                style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}>
                 <option value="" disabled>Selecciona un servicio</option>
                 {services.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
 
-            <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '15px', fontSize: 16, marginTop: 4 }}>
+            <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '16px', fontSize: 16, marginTop: 4 }}>
               {sent ? '✓ ¡Mensaje enviado!' : '🎁 Quiero mi video gratis'}
             </button>
           </form>
 
           <div style={{
             marginTop: 32, textAlign: 'center', padding: '24px',
-            background: '#fff', border: '1px solid rgba(26,26,46,0.08)',
-            borderRadius: 14, boxShadow: '0 2px 12px rgba(26,26,46,0.05)',
+            background: '#fff', border: '1px solid #E0EAFF',
+            borderRadius: 16, boxShadow: '0 8px 30px rgba(0,102,255,0.08)',
           }}>
-            <p style={{ color: 'rgba(26,26,46,0.45)', fontSize: 13, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.08em' }}>O escríbenos directo por WhatsApp</p>
+            <p style={{ color: '#4A5568', fontSize: 13, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.08em' }}>O escríbenos directo por WhatsApp</p>
             <a href="https://wa.me/526271424345" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: '#7C3AED', fontWeight: 700, fontSize: 17 }}>
+              className="gradient-text"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 800, fontSize: 18 }}>
               <span style={{ fontSize: 22 }}>📱</span>
               +52 627 142 4345
             </a>
