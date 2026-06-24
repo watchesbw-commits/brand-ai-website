@@ -9,25 +9,24 @@ const reasons = [
 
 export default function WhyBrandAI() {
   return (
-    <section id="precios" style={{ background: '#050510' }}>
+    <section id="precios" style={{ background: '#FFFFFF' }}>
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Por qué nosotros</span>
         </div>
-        <h2 className="section-title gradient-text">¿Por qué Brand AI?</h2>
+        <h2 className="section-title">¿Por qué <span className="gradient-text">Brand AI</span>?</h2>
         <p className="section-sub">Lo que nos hace diferentes</p>
 
         <Carousel minWidth={240}>
           {reasons.map((r, i) => (
-            <div key={i} className="card" style={{ textAlign: 'center', padding: '40px 28px', height: '100%' }}>
+            <div key={i} className="card" style={{ textAlign: 'center', padding: '36px 24px', height: '100%' }}>
               <div style={{
-                width: 70, height: 70, borderRadius: 20, margin: '0 auto 24px',
-                background: 'linear-gradient(135deg, #0066FF, #00D4FF)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30,
-                boxShadow: '0 0 30px rgba(0,102,255,0.5)',
+                width: 60, height: 60, borderRadius: 16, margin: '0 auto 20px',
+                background: '#EFF6FF',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26,
               }}>{r.icon}</div>
-              <h3 style={{ fontWeight: 800, fontSize: 17, marginBottom: 12, color: '#FFFFFF' }}>{r.title}</h3>
-              <p style={{ color: '#8892B0', fontSize: 14, lineHeight: 1.75 }}>{r.desc}</p>
+              <h3 style={{ fontWeight: 700, fontSize: 16, marginBottom: 10, color: '#111827' }}>{r.title}</h3>
+              <p style={{ color: '#6B7280', fontSize: 14, lineHeight: 1.7 }}>{r.desc}</p>
             </div>
           ))}
         </Carousel>

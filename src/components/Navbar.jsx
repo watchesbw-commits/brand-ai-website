@@ -20,53 +20,52 @@ export default function Navbar() {
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      background: 'rgba(5,5,16,0.9)',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
-      borderBottom: scrolled ? '1px solid rgba(0,102,255,0.2)' : '1px solid transparent',
-      boxShadow: scrolled ? '0 4px 40px rgba(0,0,0,0.4)' : 'none',
-      transition: 'all 0.3s ease',
+      background: 'rgba(255,255,255,0.9)',
+      backdropFilter: 'blur(12px)',
+      WebkitBackdropFilter: 'blur(12px)',
+      borderBottom: '1px solid #F3F4F6',
+      boxShadow: scrolled ? '0 1px 8px rgba(0,0,0,0.06)' : 'none',
+      transition: 'box-shadow 0.2s ease',
     }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
 
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: 22, fontWeight: 900, letterSpacing: '-0.5px' }}>
-          <span style={{ color: '#FFFFFF' }}>Brand</span>
-          <span className="gradient-text">AI</span>
+        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: 20, fontWeight: 800, letterSpacing: '-0.5px', color: '#111827' }}>
+          Brand<span style={{ color: '#2563EB' }}>AI</span>
         </a>
 
-        <div className="nav-links-desktop" style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+        <div className="nav-links-desktop" style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
           {links.map(l => (
             <a key={l.href} href={l.href}
-              style={{ color: '#8892B0', fontSize: 14, fontWeight: 500, transition: 'color 0.18s' }}
-              onMouseEnter={e => e.target.style.color = '#00D4FF'}
-              onMouseLeave={e => e.target.style.color = '#8892B0'}>
+              style={{ color: '#6B7280', fontSize: 14, fontWeight: 500, transition: 'color 0.15s' }}
+              onMouseEnter={e => e.target.style.color = '#111827'}
+              onMouseLeave={e => e.target.style.color = '#6B7280'}>
               {l.label}
             </a>
           ))}
-          <a href="#contacto" className="btn-primary" style={{ padding: '10px 22px', fontSize: 14 }}>
+          <a href="#contacto" className="btn-primary" style={{ padding: '9px 20px', fontSize: 14 }}>
             Contactar
           </a>
         </div>
 
         <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger"
-          style={{ background: 'none', border: 'none', color: '#FFFFFF', display: 'none', flexDirection: 'column', gap: 5, padding: 4 }}>
-          <span style={{ display: 'block', width: 22, height: 2, background: '#FFFFFF', borderRadius: 1, transition: 'all 0.22s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}/>
-          <span style={{ display: 'block', width: 22, height: 2, background: '#FFFFFF', borderRadius: 1, transition: 'all 0.22s', opacity: menuOpen ? 0 : 1 }}/>
-          <span style={{ display: 'block', width: 22, height: 2, background: '#FFFFFF', borderRadius: 1, transition: 'all 0.22s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }}/>
+          style={{ background: 'none', border: 'none', color: '#111827', display: 'none', flexDirection: 'column', gap: 5, padding: 4 }}>
+          <span style={{ display: 'block', width: 22, height: 2, background: '#111827', borderRadius: 1, transition: 'all 0.22s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}/>
+          <span style={{ display: 'block', width: 22, height: 2, background: '#111827', borderRadius: 1, transition: 'all 0.22s', opacity: menuOpen ? 0 : 1 }}/>
+          <span style={{ display: 'block', width: 22, height: 2, background: '#111827', borderRadius: 1, transition: 'all 0.22s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }}/>
         </button>
       </div>
 
       {menuOpen && (
         <div style={{
-          background: 'rgba(5,5,16,0.98)',
-          backdropFilter: 'blur(20px)',
-          borderTop: '1px solid rgba(0,102,255,0.2)',
-          padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 20,
-          boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+          background: '#FFFFFF',
+          borderTop: '1px solid #F3F4F6',
+          padding: '20px 24px',
+          display: 'flex', flexDirection: 'column', gap: 20,
+          boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
         }}>
           {links.map(l => (
             <a key={l.href} href={l.href}
-              style={{ color: '#FFFFFF', fontSize: 16, fontWeight: 500 }}
+              style={{ color: '#111827', fontSize: 16, fontWeight: 500 }}
               onClick={() => setMenuOpen(false)}>
               {l.label}
             </a>

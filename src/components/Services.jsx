@@ -25,18 +25,17 @@ const mediumBiz = [
 
 function ServiceCard({ icon, name, price }) {
   return (
-    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 16, height: '100%' }}>
+    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 14, height: '100%' }}>
       <div style={{
-        width: 52, height: 52, borderRadius: 14,
-        background: 'linear-gradient(135deg, #0066FF, #00D4FF)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
-        boxShadow: '0 0 20px rgba(0,102,255,0.4)',
+        width: 48, height: 48, borderRadius: 12,
+        background: '#EFF6FF',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22,
       }}>{icon}</div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 8, color: '#FFFFFF' }}>{name}</div>
-        <div className="gradient-text" style={{ fontSize: 15, fontWeight: 800 }}>{price}</div>
+        <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 6, color: '#111827' }}>{name}</div>
+        <div style={{ fontSize: 14, fontWeight: 700, color: '#2563EB' }}>{price}</div>
       </div>
-      <a href="#contacto" className="btn-primary" style={{ padding: '10px 18px', fontSize: 13, marginTop: 'auto' }}>
+      <a href="#contacto" className="btn-primary" style={{ padding: '9px 16px', fontSize: 13, marginTop: 'auto' }}>
         Contratar
       </a>
     </div>
@@ -49,29 +48,26 @@ export default function Services() {
   const data = [smallBiz, mediumBiz]
 
   return (
-    <section id="servicios" style={{ background: '#050510' }}>
+    <section id="servicios" style={{ background: '#FFFFFF' }}>
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Servicios</span>
         </div>
-        <h2 className="section-title gradient-text">Servicios individuales</h2>
+        <h2 className="section-title">Servicios <span className="gradient-text">individuales</span></h2>
         <p className="section-sub">Paga solo lo que necesitas</p>
 
         <div style={{
-          display: 'flex', justifyContent: 'center', marginBottom: 44,
-          background: 'rgba(13,13,31,0.8)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(0,102,255,0.3)',
-          borderRadius: 12, padding: 5, maxWidth: 390, margin: '0 auto 44px',
+          display: 'flex', justifyContent: 'center', marginBottom: 40,
+          background: '#F9FAFB', border: '1px solid #E5E7EB',
+          borderRadius: 10, padding: 4, maxWidth: 380, margin: '0 auto 40px',
         }}>
           {tabs.map((t, i) => (
             <button key={i} onClick={() => setTab(i)} style={{
-              flex: 1, padding: '10px 16px', borderRadius: 8, border: 'none',
-              background: tab === i ? 'linear-gradient(135deg, #0066FF, #00D4FF)' : 'transparent',
-              color: tab === i ? '#fff' : '#8892B0',
-              fontWeight: 700, fontSize: 14,
-              boxShadow: tab === i ? '0 0 20px rgba(0,102,255,0.4)' : 'none',
-              transition: 'all 0.22s',
+              flex: 1, padding: '9px 14px', borderRadius: 8, border: 'none',
+              background: tab === i ? '#2563EB' : 'transparent',
+              color: tab === i ? '#fff' : '#6B7280',
+              fontWeight: 600, fontSize: 14,
+              transition: 'all 0.18s',
             }}>{t}</button>
           ))}
         </div>

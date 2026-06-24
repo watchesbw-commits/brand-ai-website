@@ -1,36 +1,25 @@
 import { useRef, useState } from 'react'
 import VideoPlayer from './VideoPlayer'
 
-const YT_SRC = 'https://www.youtube.com/embed/xqlnDoOkubo?autoplay=1&mute=1&loop=1&playlist=xqlnDoOkubo&controls=0&playsinline=1&rel=0&modestbranding=1'
+const DRIVE_SRC = 'https://drive.google.com/file/d/1varxjuzS--SAxsf5NcUMggeST2QMJYPU/preview'
+const YT_SRC = 'https://www.youtube.com/embed/xqlnDoOkubo?autoplay=1&mute=1&loop=1&playlist=xqlnDoOkubo&controls=0&playsinline=1'
 
 const slides = [
   {
     id: 'ai-model',
-    title: 'Influencers de IA para tu marca',
-    desc: 'Tu propia modelo virtual generando videos profesionales 24/7, sin locación ni equipo.',
-    videoProps: { placeholder: true, vertical: true, title: 'Modelo IA — Brand AI', mb: 24 },
+    src: DRIVE_SRC,
+    allow: 'autoplay; encrypted-media',
+    title: 'Modelos e Influencers IA',
+    desc: 'Crea tu propia modelo o influencer virtual con IA',
   },
   {
     id: 'airbnb-tours',
+    src: YT_SRC,
+    allow: 'autoplay; encrypted-media; gyroscope; picture-in-picture',
     title: 'Tours Cinematográficos para Airbnb',
-    desc: 'Convertimos las fotos de tu propiedad en un video inmersivo para aumentar tus reservas.',
-    videoProps: { src: YT_SRC, vertical: false, title: 'Tour Airbnb — Brand AI', mb: 24 },
+    desc: 'Convierte las fotos de tu propiedad en un video inmersivo con IA',
   },
 ]
-
-const arrowStyle = {
-  position: 'absolute', top: '42%', transform: 'translateY(-50%)',
-  background: 'rgba(13,13,31,0.85)',
-  backdropFilter: 'blur(10px)',
-  WebkitBackdropFilter: 'blur(10px)',
-  border: '1px solid rgba(0,212,255,0.4)',
-  borderRadius: '50%',
-  width: 48, height: 48,
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-  color: '#00D4FF', fontSize: 24, cursor: 'pointer', zIndex: 10,
-  boxShadow: '0 0 20px rgba(0,102,255,0.35)',
-  transition: 'all 0.2s',
-}
 
 export default function VideoCarousel() {
   const trackRef = useRef(null)
@@ -39,119 +28,148 @@ export default function VideoCarousel() {
   const scrollTo = (index) => {
     const track = trackRef.current
     if (!track) return
-    track.scrollTo({ left: track.offsetWidth * index, behavior: 'smooth' })
+    const item = track.children[index]
+    if (item) item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
     setActive(index)
   }
 
   const handleScroll = () => {
     const track = trackRef.current
     if (!track) return
-    const index = Math.round(track.scrollLeft / track.offsetWidth)
-    if (index !== active) setActive(index)
+    const { scrollLeft, offsetWidth } = track
+    const items = Array.from(track.children)
+    let closest = 0
+    let minDist = Infinity
+    items.forEach((el, i) => {
+      const dist = Math.abs(el.offsetLeft - scrollLeft)
+      if (dist < minDist) { minDist = dist; closest = i }
+    })
+    if (closest !== active) setActive(closest)
   }
 
   return (
-    <section id="videos" style={{ background: '#050510', overflow: 'hidden' }}>
-      <style>{`.vc-track::-webkit-scrollbar { display: none; }`}</style>
+    <section id="videos" style={{ background: '#F9FAFB' }}>
+      <style>{`
+        .vc-track::-webkit-scrollbar { display: none; }
+        @media (max-width: 767px) {
+          .vc-track {
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            justify-content: flex-start !important;
+            flex-wrap: nowrap !important;
+            padding: 0 16px 8px !important;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .vc-item { flex: 0 0 88% !important; width: auto !important; scroll-snap-align: start; }
+          .vc-controls { display: flex !important; }
+          .vc-arrows { display: flex !important; }
+        }
+      `}</style>
 
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Videos</span>
         </div>
-        <h2 className="section-title gradient-text">Mira lo que hacemos</h2>
+        <h2 className="section-title">Mira lo que <span className="gradient-text">hacemos</span></h2>
         <p className="section-sub">Resultados reales con inteligencia artificial</p>
       </div>
 
-      <div style={{ position: 'relative' }}>
-        {/* Carousel track */}
-        <div
-          ref={trackRef}
-          className="vc-track"
-          onScroll={handleScroll}
-          style={{
-            display: 'flex',
-            overflowX: 'auto',
-            scrollSnapType: 'x mandatory',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
-        >
-          {slides.map((slide) => (
-            <div
-              key={slide.id}
-              style={{ flex: '0 0 100%', scrollSnapAlign: 'start', padding: '0 0 8px' }}
-            >
-              <VideoPlayer {...slide.videoProps} />
-              <div style={{ textAlign: 'center', padding: '0 24px 16px', maxWidth: 700, margin: '0 auto' }}>
-                <h3 style={{
-                  color: '#FFFFFF',
-                  fontSize: 'clamp(18px, 3vw, 24px)',
-                  fontWeight: 800, marginBottom: 10,
-                }}>
-                  {slide.title}
-                </h3>
-                <p style={{ color: '#8892B0', fontSize: 15, lineHeight: 1.65 }}>{slide.desc}</p>
-              </div>
+      {/* Video track — side-by-side desktop, carousel mobile */}
+      <div
+        ref={trackRef}
+        className="vc-track"
+        onScroll={handleScroll}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 32,
+          flexWrap: 'wrap',
+          padding: '0 24px',
+        }}
+      >
+        {slides.map((slide) => (
+          <div
+            key={slide.id}
+            className="vc-item"
+            style={{ width: 320, flexShrink: 0 }}
+          >
+            <VideoPlayer
+              src={slide.src}
+              title={slide.title}
+              allow={slide.allow}
+              vertical={true}
+              mb={0}
+            />
+            <div style={{ marginTop: 16, textAlign: 'center' }}>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 6 }}>
+                {slide.title}
+              </h3>
+              <p style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.55 }}>{slide.desc}</p>
             </div>
-          ))}
-        </div>
-
-        {/* Left arrow */}
-        {active > 0 && (
-          <button
-            onClick={() => scrollTo(active - 1)}
-            style={{ ...arrowStyle, left: 16 }}
-            onMouseEnter={e => {
-              e.currentTarget.style.boxShadow = '0 0 30px rgba(0,212,255,0.5)'
-              e.currentTarget.style.borderColor = '#00D4FF'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(0,102,255,0.35)'
-              e.currentTarget.style.borderColor = 'rgba(0,212,255,0.4)'
-            }}
-          >‹</button>
-        )}
-
-        {/* Right arrow */}
-        {active < slides.length - 1 && (
-          <button
-            onClick={() => scrollTo(active + 1)}
-            style={{ ...arrowStyle, right: 16 }}
-            onMouseEnter={e => {
-              e.currentTarget.style.boxShadow = '0 0 30px rgba(0,212,255,0.5)'
-              e.currentTarget.style.borderColor = '#00D4FF'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(0,102,255,0.35)'
-              e.currentTarget.style.borderColor = 'rgba(0,212,255,0.4)'
-            }}
-          >›</button>
-        )}
+          </div>
+        ))}
       </div>
 
-      {/* Dot indicators */}
-      <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center',
-        gap: 8, marginTop: 28, paddingBottom: 8,
-      }}>
+      {/* Controls (arrows + dots) — shown on mobile only via CSS */}
+      <div
+        className="vc-controls"
+        style={{
+          display: 'none',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 10,
+          marginTop: 24,
+          paddingBottom: 4,
+        }}
+      >
+        {/* Left arrow */}
+        <button
+          className="vc-arrows"
+          onClick={() => scrollTo(Math.max(0, active - 1))}
+          disabled={active === 0}
+          style={{
+            display: 'none',
+            background: '#FFFFFF', border: '1px solid #E5E7EB',
+            borderRadius: '50%', width: 36, height: 36,
+            alignItems: 'center', justifyContent: 'center',
+            color: '#6B7280', fontSize: 18, cursor: 'pointer',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+            opacity: active === 0 ? 0.35 : 1,
+          }}
+        >‹</button>
+
+        {/* Dots */}
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => scrollTo(i)}
             style={{
-              width: i === active ? 22 : 8,
-              height: 8,
+              width: i === active ? 20 : 7,
+              height: 7,
               borderRadius: i === active ? 4 : '50%',
-              background: i === active
-                ? 'linear-gradient(135deg, #0066FF, #00D4FF)'
-                : 'rgba(0,102,255,0.25)',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'all 0.22s',
-              padding: 0,
+              background: i === active ? '#2563EB' : '#D1D5DB',
+              border: 'none', cursor: 'pointer',
+              transition: 'all 0.22s', padding: 0,
             }}
           />
         ))}
+
+        {/* Right arrow */}
+        <button
+          className="vc-arrows"
+          onClick={() => scrollTo(Math.min(slides.length - 1, active + 1))}
+          disabled={active === slides.length - 1}
+          style={{
+            display: 'none',
+            background: '#FFFFFF', border: '1px solid #E5E7EB',
+            borderRadius: '50%', width: 36, height: 36,
+            alignItems: 'center', justifyContent: 'center',
+            color: '#6B7280', fontSize: 18, cursor: 'pointer',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+            opacity: active === slides.length - 1 ? 0.35 : 1,
+          }}
+        >›</button>
       </div>
     </section>
   )
