@@ -30,7 +30,6 @@ export default function App() {
       <Portfolio />
       <Divider />
       <Contact />
-      <Divider />
       <Footer />
     </>
   )
