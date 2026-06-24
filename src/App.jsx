@@ -1,6 +1,7 @@
 import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import VideoCarousel from './components/VideoCarousel'
 import Services from './components/Services'
 import AIModels from './components/AIModels'
 import Packages from './components/Packages'
@@ -19,6 +20,8 @@ export default function App() {
     <>
       <Navbar />
       <Hero />
+      <Divider />
+      <VideoCarousel />
       <Divider />
       <Services />
       <Divider />

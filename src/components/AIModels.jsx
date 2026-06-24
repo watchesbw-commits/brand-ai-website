@@ -1,7 +1,3 @@
-import VideoPlayer from './VideoPlayer'
-
-const DRIVE_SRC = 'https://drive.google.com/file/d/1varxjuzS--SAxsf5NcUMggeST2QMJYPU/preview'
-
 const features = [
   { icon: '🎭', text: 'Modelo personalizada con la identidad de tu marca' },
   { icon: '🌎', text: 'Videos en cualquier idioma o acento' },
@@ -24,13 +20,6 @@ export default function AIModels() {
           Creamos tu propia modelo virtual con inteligencia artificial. Genera videos
           profesionales en minutos con una influencer que trabaja 24/7 para tu negocio.
         </p>
-
-        <VideoPlayer
-          src={DRIVE_SRC}
-          title="Modelo IA — Brand AI"
-          vertical={true}
-          allow="autoplay; encrypted-media"
-        />
 
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 16 }}>

@@ -5,24 +5,27 @@ export default function VideoPlayer({
   title,
   vertical = false,
   allow = 'autoplay; encrypted-media; gyroscope; picture-in-picture',
+  placeholder = false,
+  mb = 56,
 }) {
   const ref = useRef(null)
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    if (placeholder) return
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setLoaded(true) },
       { threshold: 0.3 }
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
-  }, [])
+  }, [placeholder])
 
   const maxWidth = vertical ? 360 : 700
   const aspectRatio = vertical ? '9 / 16' : '16 / 9'
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 56 }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: mb }}>
       <div className="float" style={{ width: '100%', maxWidth }}>
         <div ref={ref} style={{
           width: '100%',
@@ -33,7 +36,19 @@ export default function VideoPlayer({
           border: '1px solid rgba(0,212,255,0.3)',
           boxShadow: '0 0 80px rgba(0,102,255,0.4), 0 0 160px rgba(0,212,255,0.2)',
         }}>
-          {loaded ? (
+          {placeholder ? (
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: '#000000',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{
+                color: '#FFFFFF', fontWeight: 800, fontSize: 18,
+                letterSpacing: '0.12em', textTransform: 'uppercase',
+                textAlign: 'center', padding: '0 24px',
+              }}>VIDEO PRÓXIMAMENTE</span>
+            </div>
+          ) : loaded ? (
             <iframe
               src={src}
               title={title}

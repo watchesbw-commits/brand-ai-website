@@ -1,5 +1,4 @@
 import Carousel from './Carousel'
-import VideoPlayer from './VideoPlayer'
 
 const plans = [
   { name: 'Básico',   images: 10, price: '$800 MXN'   },
@@ -14,8 +13,6 @@ const WA_MSG = encodeURIComponent(
   '¡Hola Brand AI! Me interesa el Tour Cinematográfico para Airbnb. ¿Pueden darme más información?'
 )
 const WA_LINK = `https://wa.me/526271424345?text=${WA_MSG}`
-
-const YT_SRC = 'https://www.youtube.com/embed/xqlnDoOkubo?autoplay=1&mute=1&loop=1&playlist=xqlnDoOkubo&controls=0&playsinline=1&rel=0&modestbranding=1'
 
 function PlanCard({ name, images, price, featured }) {
   return (
@@ -93,12 +90,6 @@ export default function AirbnbTours() {
           Convertimos las fotos de tu propiedad en un video cinematográfico inmersivo con
           inteligencia artificial. Ideal para aumentar reservas en Airbnb, Instagram y TikTok.
         </p>
-
-        <VideoPlayer
-          src={YT_SRC}
-          title="Tour Cinematográfico Airbnb — Brand AI"
-          vertical={false}
-        />
 
         <Carousel minWidth={220}>
           {plans.map((p, i) => <PlanCard key={i} {...p} />)}
