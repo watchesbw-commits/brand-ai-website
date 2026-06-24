@@ -9,7 +9,7 @@ const reasons = [
 
 export default function WhyBrandAI() {
   return (
-    <section id="precios" style={{ background: '#F0F4FF' }}>
+    <section id="precios" style={{ background: '#050510' }}>
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Por qué nosotros</span>
@@ -24,10 +24,10 @@ export default function WhyBrandAI() {
                 width: 70, height: 70, borderRadius: 20, margin: '0 auto 24px',
                 background: 'linear-gradient(135deg, #0066FF, #00D4FF)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30,
-                boxShadow: '0 8px 24px rgba(0,102,255,0.35)',
+                boxShadow: '0 0 30px rgba(0,102,255,0.5)',
               }}>{r.icon}</div>
-              <h3 style={{ fontWeight: 800, fontSize: 17, marginBottom: 12, color: '#0A0A1A' }}>{r.title}</h3>
-              <p style={{ color: '#4A5568', fontSize: 14, lineHeight: 1.75 }}>{r.desc}</p>
+              <h3 style={{ fontWeight: 800, fontSize: 17, marginBottom: 12, color: '#FFFFFF' }}>{r.title}</h3>
+              <p style={{ color: '#8892B0', fontSize: 14, lineHeight: 1.75 }}>{r.desc}</p>
             </div>
           ))}
         </Carousel>

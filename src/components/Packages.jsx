@@ -39,34 +39,38 @@ const mediumPkgs = [
 function PkgCard({ name, price, note, featured, features, ideal }) {
   return (
     <div style={{
-      background: featured ? 'linear-gradient(145deg, #0066FF, #00D4FF)' : '#fff',
-      border: featured ? 'none' : '1px solid #E0EAFF',
+      background: featured
+        ? 'linear-gradient(145deg, #0066FF, #00D4FF)'
+        : 'rgba(13,13,31,0.8)',
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)',
+      border: featured ? 'none' : '1px solid rgba(0,102,255,0.3)',
       borderRadius: 20, padding: '32px 28px',
       display: 'flex', flexDirection: 'column', gap: 20,
       position: 'relative',
-      boxShadow: featured
-        ? '0 20px 60px rgba(0,102,255,0.45), 0 6px 0 #0044CC'
-        : '0 10px 40px rgba(0,102,255,0.1)',
+      boxShadow: featured ? '0 0 60px rgba(0,102,255,0.5)' : 'none',
       transition: 'all 0.3s ease',
       height: '100%',
     }}
     onMouseEnter={e => {
       e.currentTarget.style.transform = 'translateY(-6px)'
-      e.currentTarget.style.boxShadow = featured
-        ? '0 28px 70px rgba(0,102,255,0.55), 0 6px 0 #0044CC'
-        : '0 20px 60px rgba(0,102,255,0.18)'
+      if (!featured) {
+        e.currentTarget.style.borderColor = 'rgba(0,212,255,0.5)'
+        e.currentTarget.style.boxShadow = '0 0 40px rgba(0,102,255,0.3)'
+      }
     }}
     onMouseLeave={e => {
       e.currentTarget.style.transform = 'translateY(0)'
-      e.currentTarget.style.boxShadow = featured
-        ? '0 20px 60px rgba(0,102,255,0.45), 0 6px 0 #0044CC'
-        : '0 10px 40px rgba(0,102,255,0.1)'
+      if (!featured) {
+        e.currentTarget.style.borderColor = 'rgba(0,102,255,0.3)'
+        e.currentTarget.style.boxShadow = 'none'
+      }
     }}
     >
       {featured && (
         <div style={{
           position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)',
-          background: '#0A0A1A', color: '#fff',
+          background: '#FFFFFF', color: '#0066FF',
           fontSize: 10, fontWeight: 700,
           padding: '5px 20px', borderRadius: 100,
           letterSpacing: '0.15em', whiteSpace: 'nowrap', textTransform: 'uppercase',
@@ -74,35 +78,35 @@ function PkgCard({ name, price, note, featured, features, ideal }) {
       )}
 
       <div>
-        <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 10, color: featured ? '#fff' : '#0A0A1A' }}>{name}</h3>
-        <div style={{ fontSize: 30, fontWeight: 900, lineHeight: 1, color: featured ? '#fff' : '#0066FF' }}>{price}</div>
-        {note && <div style={{ fontSize: 13, marginTop: 6, color: featured ? 'rgba(255,255,255,0.7)' : '#4A5568' }}>{note}</div>}
+        <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 10, color: '#FFFFFF' }}>{name}</h3>
+        <div style={{ fontSize: 30, fontWeight: 900, lineHeight: 1, color: featured ? '#FFFFFF' : '#00D4FF' }}>{price}</div>
+        {note && <div style={{ fontSize: 13, marginTop: 6, color: featured ? 'rgba(255,255,255,0.7)' : '#8892B0' }}>{note}</div>}
       </div>
 
       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
         {features.map((f, i) => (
-          <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: featured ? 'rgba(255,255,255,0.92)' : '#4A5568' }}>
-            <span style={{ color: featured ? '#fff' : '#0066FF', fontWeight: 800, flexShrink: 0, marginTop: 1 }}>✓</span>
+          <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: featured ? 'rgba(255,255,255,0.92)' : '#8892B0' }}>
+            <span style={{ color: featured ? '#FFFFFF' : '#00D4FF', fontWeight: 800, flexShrink: 0, marginTop: 1 }}>✓</span>
             {f}
           </li>
         ))}
       </ul>
 
       <div style={{
-        fontSize: 13, color: featured ? 'rgba(255,255,255,0.6)' : '#4A5568',
-        borderTop: `1px solid ${featured ? 'rgba(255,255,255,0.2)' : '#E0EAFF'}`,
+        fontSize: 13, color: featured ? 'rgba(255,255,255,0.6)' : '#8892B0',
+        borderTop: `1px solid ${featured ? 'rgba(255,255,255,0.2)' : 'rgba(0,102,255,0.3)'}`,
         paddingTop: 14,
       }}>
-        Ideal para: <span style={{ color: featured ? 'rgba(255,255,255,0.85)' : '#0A0A1A', fontWeight: 500 }}>{ideal}</span>
+        Ideal para: <span style={{ color: featured ? 'rgba(255,255,255,0.9)' : '#FFFFFF', fontWeight: 500 }}>{ideal}</span>
       </div>
 
       <a href="#contacto" style={{
         display: 'flex', justifyContent: 'center', alignItems: 'center',
-        padding: '13px', borderRadius: 12, fontWeight: 700, fontSize: 14,
+        padding: '13px', borderRadius: 8, fontWeight: 700, fontSize: 14,
         background: featured ? '#fff' : 'linear-gradient(135deg, #0066FF, #00D4FF)',
         color: featured ? '#0066FF' : '#fff',
         border: 'none',
-        boxShadow: featured ? '0 4px 16px rgba(0,0,0,0.15)' : '0 6px 18px rgba(0,102,255,0.35), 0 3px 0 #0044CC',
+        boxShadow: featured ? '0 4px 16px rgba(0,0,0,0.2)' : '0 0 20px rgba(0,102,255,0.4)',
         transition: 'all 0.22s',
         textDecoration: 'none',
       }}>
@@ -114,7 +118,7 @@ function PkgCard({ name, price, note, featured, features, ideal }) {
 
 export default function Packages() {
   return (
-    <section id="paquetes" style={{ background: '#FFFFFF' }}>
+    <section id="paquetes" style={{ background: '#050510' }}>
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Paquetes</span>
@@ -122,7 +126,7 @@ export default function Packages() {
         <h2 className="section-title gradient-text">Paquetes todo incluido</h2>
         <p className="section-sub">Ahorra hasta 40% vs contratar por separado</p>
 
-        <h3 style={{ fontSize: 12, fontWeight: 700, marginBottom: 24, color: '#0066FF', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+        <h3 style={{ fontSize: 12, fontWeight: 700, marginBottom: 24, color: '#00D4FF', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
           Pequeños negocios
         </h3>
         <div style={{ marginBottom: 64 }}>
@@ -131,7 +135,7 @@ export default function Packages() {
           </Carousel>
         </div>
 
-        <h3 style={{ fontSize: 12, fontWeight: 700, marginBottom: 24, color: '#0066FF', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+        <h3 style={{ fontSize: 12, fontWeight: 700, marginBottom: 24, color: '#00D4FF', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
           Empresas medianas
         </h3>
         <Carousel minWidth={300}>

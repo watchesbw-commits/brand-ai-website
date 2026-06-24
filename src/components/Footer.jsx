@@ -13,7 +13,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer style={{ background: '#050A1F', padding: '56px 0 32px' }}>
+    <footer style={{ background: '#030308', padding: '56px 0 32px' }}>
       <div className="container">
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 48, justifyContent: 'space-between', marginBottom: 48 }}>
 
@@ -22,19 +22,19 @@ export default function Footer() {
               <span style={{ color: '#fff' }}>Brand</span>
               <span className="gradient-text">AI</span>
             </a>
-            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 14, lineHeight: 1.75 }}>
+            <p style={{ color: 'rgba(136,146,176,0.6)', fontSize: 14, lineHeight: 1.75 }}>
               Agencia de inteligencia artificial en México. Videos, chatbots, apps y automatización para tu negocio.
             </p>
           </div>
 
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.3)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 18 }}>Navegación</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(136,146,176,0.4)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 18 }}>Navegación</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {links.map(l => (
                 <a key={l.href} href={l.href}
-                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, transition: 'color 0.18s' }}
+                  style={{ color: 'rgba(136,146,176,0.6)', fontSize: 14, transition: 'color 0.18s' }}
                   onMouseEnter={e => e.target.style.color = '#00D4FF'}
-                  onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.5)'}>
+                  onMouseLeave={e => e.target.style.color = 'rgba(136,146,176,0.6)'}>
                   {l.label}
                 </a>
               ))}
@@ -42,13 +42,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.3)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 18 }}>Redes sociales</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(136,146,176,0.4)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 18 }}>Redes sociales</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {socials.map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-                  style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(255,255,255,0.5)', fontSize: 14, transition: 'color 0.18s' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(136,146,176,0.6)', fontSize: 14, transition: 'color 0.18s' }}
                   onMouseEnter={e => { e.currentTarget.style.color = '#00D4FF' }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)' }}>
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(136,146,176,0.6)' }}>
                   <span>{s.icon}</span> {s.label}
                 </a>
               ))}
@@ -56,11 +56,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Gradient divider */}
-        <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(0,102,255,0.4), rgba(0,212,255,0.4), transparent)', marginBottom: 28 }}/>
+        <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(0,102,255,0.5), rgba(0,212,255,0.4), transparent)', marginBottom: 28 }}/>
 
         <div style={{ textAlign: 'center' }}>
-          <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: 13 }}>
+          <p style={{ color: 'rgba(136,146,176,0.25)', fontSize: 13 }}>
             © 2026 Brand AI · México · Todos los derechos reservados
           </p>
         </div>

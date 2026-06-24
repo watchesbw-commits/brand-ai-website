@@ -30,10 +30,10 @@ function ServiceCard({ icon, name, price }) {
         width: 52, height: 52, borderRadius: 14,
         background: 'linear-gradient(135deg, #0066FF, #00D4FF)',
         display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
-        boxShadow: '0 6px 16px rgba(0,102,255,0.3)',
+        boxShadow: '0 0 20px rgba(0,102,255,0.4)',
       }}>{icon}</div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 8, color: '#0A0A1A' }}>{name}</div>
+        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 8, color: '#FFFFFF' }}>{name}</div>
         <div className="gradient-text" style={{ fontSize: 15, fontWeight: 800 }}>{price}</div>
       </div>
       <a href="#contacto" className="btn-primary" style={{ padding: '10px 18px', fontSize: 13, marginTop: 'auto' }}>
@@ -49,7 +49,7 @@ export default function Services() {
   const data = [smallBiz, mediumBiz]
 
   return (
-    <section id="servicios" style={{ background: '#F0F4FF' }}>
+    <section id="servicios" style={{ background: '#050510' }}>
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Servicios</span>
@@ -59,17 +59,18 @@ export default function Services() {
 
         <div style={{
           display: 'flex', justifyContent: 'center', marginBottom: 44,
-          background: '#fff', border: '1px solid #E0EAFF',
-          borderRadius: 14, padding: 5, maxWidth: 390, margin: '0 auto 44px',
-          boxShadow: '0 4px 16px rgba(0,102,255,0.08)',
+          background: 'rgba(13,13,31,0.8)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(0,102,255,0.3)',
+          borderRadius: 12, padding: 5, maxWidth: 390, margin: '0 auto 44px',
         }}>
           {tabs.map((t, i) => (
             <button key={i} onClick={() => setTab(i)} style={{
-              flex: 1, padding: '10px 16px', borderRadius: 10, border: 'none',
+              flex: 1, padding: '10px 16px', borderRadius: 8, border: 'none',
               background: tab === i ? 'linear-gradient(135deg, #0066FF, #00D4FF)' : 'transparent',
-              color: tab === i ? '#fff' : '#4A5568',
+              color: tab === i ? '#fff' : '#8892B0',
               fontWeight: 700, fontSize: 14,
-              boxShadow: tab === i ? '0 4px 14px rgba(0,102,255,0.35)' : 'none',
+              boxShadow: tab === i ? '0 0 20px rgba(0,102,255,0.4)' : 'none',
               transition: 'all 0.22s',
             }}>{t}</button>
           ))}

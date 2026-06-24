@@ -1,5 +1,5 @@
 import Carousel from './Carousel'
-import PhoneMockup from './PhoneMockup'
+import VideoPlayer from './VideoPlayer'
 
 const plans = [
   { name: 'Básico',   images: 10, price: '$800 MXN'   },
@@ -20,34 +20,47 @@ const YT_SRC = 'https://www.youtube.com/embed/xqlnDoOkubo?autoplay=1&mute=1&loop
 function PlanCard({ name, images, price, featured }) {
   return (
     <div style={{
-      background: featured ? 'linear-gradient(145deg, #0066FF, #00D4FF)' : '#fff',
-      border: featured ? 'none' : '1px solid #E0EAFF',
+      background: featured
+        ? 'linear-gradient(145deg, #0066FF, #00D4FF)'
+        : 'rgba(13,13,31,0.8)',
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)',
+      border: featured ? 'none' : '1px solid rgba(0,102,255,0.3)',
       borderRadius: 14, padding: '28px 22px',
       display: 'flex', flexDirection: 'column', gap: 14,
-      boxShadow: featured
-        ? '0 16px 48px rgba(0,102,255,0.4), 0 4px 0 #0044CC'
-        : '0 10px 40px rgba(0,102,255,0.1)',
       position: 'relative', transition: 'all 0.3s ease', height: '100%',
     }}
-    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)' }}
-    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)' }}
+    onMouseEnter={e => {
+      e.currentTarget.style.transform = 'translateY(-6px)'
+      if (!featured) {
+        e.currentTarget.style.borderColor = 'rgba(0,212,255,0.5)'
+        e.currentTarget.style.boxShadow = '0 0 30px rgba(0,102,255,0.3)'
+      }
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.transform = 'translateY(0)'
+      if (!featured) {
+        e.currentTarget.style.borderColor = 'rgba(0,102,255,0.3)'
+        e.currentTarget.style.boxShadow = 'none'
+      }
+    }}
     >
       {featured && (
         <div style={{
           position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)',
-          background: '#0A0A1A', color: '#fff',
+          background: '#FFFFFF', color: '#0066FF',
           fontSize: 10, fontWeight: 700, padding: '5px 20px', borderRadius: 100,
           letterSpacing: '0.15em', whiteSpace: 'nowrap', textTransform: 'uppercase',
         }}>Más popular</div>
       )}
 
-      <div style={{ fontSize: 16, fontWeight: 700, color: featured ? '#fff' : '#0A0A1A' }}>{name}</div>
-      <div style={{ fontSize: 28, fontWeight: 900, color: featured ? '#fff' : '#0066FF', lineHeight: 1 }}>{price}</div>
+      <div style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF' }}>{name}</div>
+      <div style={{ fontSize: 28, fontWeight: 900, color: featured ? '#FFFFFF' : '#00D4FF', lineHeight: 1 }}>{price}</div>
 
       <div style={{
         display: 'flex', alignItems: 'center', gap: 8, fontSize: 13,
-        color: featured ? 'rgba(255,255,255,0.75)' : '#4A5568',
-        borderTop: `1px solid ${featured ? 'rgba(255,255,255,0.2)' : '#E0EAFF'}`,
+        color: featured ? 'rgba(255,255,255,0.75)' : '#8892B0',
+        borderTop: `1px solid ${featured ? 'rgba(255,255,255,0.2)' : 'rgba(0,102,255,0.3)'}`,
         paddingTop: 12, marginTop: 'auto',
       }}>
         <span>🖼️</span> {images} imágenes incluidas
@@ -55,11 +68,11 @@ function PlanCard({ name, images, price, featured }) {
 
       <a href={WA_LINK} target="_blank" rel="noopener noreferrer" style={{
         display: 'flex', justifyContent: 'center', alignItems: 'center',
-        padding: '11px', borderRadius: 10, fontWeight: 700, fontSize: 13,
+        padding: '11px', borderRadius: 8, fontWeight: 700, fontSize: 13,
         background: featured ? '#fff' : 'linear-gradient(135deg, #0066FF, #00D4FF)',
         color: featured ? '#0066FF' : '#fff',
         border: 'none',
-        boxShadow: featured ? '0 4px 14px rgba(0,0,0,0.12)' : '0 6px 18px rgba(0,102,255,0.35), 0 3px 0 #0044CC',
+        boxShadow: featured ? '0 4px 14px rgba(0,0,0,0.2)' : '0 0 20px rgba(0,102,255,0.4)',
         transition: 'all 0.22s', textDecoration: 'none',
       }}>
         Quiero mi video
@@ -70,7 +83,7 @@ function PlanCard({ name, images, price, featured }) {
 
 export default function AirbnbTours() {
   return (
-    <section id="airbnb-tours" style={{ background: '#F0F4FF' }}>
+    <section id="airbnb-tours" style={{ background: '#050510' }}>
       <div className="container">
         <div className="section-label-wrap">
           <span className="section-label">Airbnb · Inmuebles</span>
@@ -81,7 +94,11 @@ export default function AirbnbTours() {
           inteligencia artificial. Ideal para aumentar reservas en Airbnb, Instagram y TikTok.
         </p>
 
-        <PhoneMockup src={YT_SRC} title="Tour Cinematográfico Airbnb — Brand AI" />
+        <VideoPlayer
+          src={YT_SRC}
+          title="Tour Cinematográfico Airbnb — Brand AI"
+          vertical={false}
+        />
 
         <Carousel minWidth={220}>
           {plans.map((p, i) => <PlanCard key={i} {...p} />)}
@@ -91,7 +108,7 @@ export default function AirbnbTours() {
           <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '14px 40px' }}>
             📱 Hablar con un asesor
           </a>
-          <p style={{ marginTop: 14, fontSize: 12, color: '#4A5568' }}>
+          <p style={{ marginTop: 14, fontSize: 12, color: '#8892B0' }}>
             Respuesta en menos de 24 h · Sin compromiso
           </p>
         </div>
