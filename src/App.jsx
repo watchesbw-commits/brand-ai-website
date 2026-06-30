@@ -5,6 +5,7 @@ import VideoCarousel from './components/VideoCarousel'
 import Services from './components/Services'
 import AIModels from './components/AIModels'
 import Packages from './components/Packages'
+import DreamGenerator from './components/DreamGenerator'
 import WhyBrandAI from './components/WhyBrandAI'
 import AirbnbTours from './components/AirbnbTours'
 import Portfolio from './components/Portfolio'
@@ -28,6 +29,8 @@ export default function App() {
       <AIModels />
       <Divider />
       <Packages />
+      <Divider />
+      <DreamGenerator />
       <Divider />
       <WhyBrandAI />
       <Divider />
